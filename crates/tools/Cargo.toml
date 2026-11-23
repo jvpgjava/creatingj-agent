@@ -1,0 +1,24 @@
+[package]
+name = "creatingj-tools"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+rust-version.workspace = true
+
+[dependencies]
+chrono.workspace = true
+creatingj-audit.workspace = true
+creatingj-core.workspace = true
+creatingj-permissions.workspace = true
+creatingj-workspace.workspace = true
+regex.workspace = true
+serde.workspace = true
+similar.workspace = true
+tokio.workspace = true
+
+[dev-dependencies]
+tempfile.workspace = true
+
+[lints]
+workspace = true
