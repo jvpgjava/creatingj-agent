@@ -1,0 +1,10 @@
+/target/
+**/*.rs.bk
+*.pdb
+.env
+.env.*
+!.env.example
+.DS_Store
+Thumbs.db
+*.log
+.creatingj/

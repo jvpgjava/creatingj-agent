@@ -1,0 +1,66 @@
+[workspace]
+resolver = "2"
+members = [
+    "crates/core",
+    "crates/audit",
+    "crates/protocol",
+    "crates/permissions",
+    "crates/workspace",
+    "crates/tools",
+    "crates/auth",
+    "crates/api-client",
+    "crates/cli",
+    "crates/runner",
+]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2024"
+authors = ["Joao Vitor Prestes Grando <jvpgjava@users.noreply.github.com>"]
+license = "MIT"
+rust-version = "1.85"
+
+[workspace.dependencies]
+base64 = "0.22"
+chrono = { version = "0.4", features = ["serde"] }
+clap = { version = "4.5", features = ["derive", "env"] }
+dirs = "6.0"
+futures = "0.3"
+ignore = "0.4"
+keyring = { version = "3.6", features = ["windows-native", "apple-native", "sync-secret-service"] }
+rand = "0.9"
+regex = "1.11"
+reqwest = { version = "0.12", default-features = false, features = ["json", "stream", "rustls-tls"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+sha2 = "0.10"
+similar = "2.7"
+tempfile = "3.19"
+thiserror = "2.0"
+tokio = { version = "1.44", features = ["full"] }
+toml = "0.8"
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter", "fmt", "json"] }
+url = "2.5"
+uuid = { version = "1.16", features = ["v4", "serde"] }
+wiremock = "0.6"
+
+creatingj-core = { path = "crates/core" }
+creatingj-audit = { path = "crates/audit" }
+creatingj-protocol = { path = "crates/protocol" }
+creatingj-permissions = { path = "crates/permissions" }
+creatingj-workspace = { path = "crates/workspace" }
+creatingj-tools = { path = "crates/tools" }
+creatingj-auth = { path = "crates/auth" }
+creatingj-api-client = { path = "crates/api-client" }
+
+[workspace.lints.rust]
+unsafe_code = "forbid"
+
+[workspace.lints.clippy]
+all = { level = "warn", priority = -1 }
+pedantic = { level = "warn", priority = -1 }
+module_name_repetitions = "allow"
+missing_errors_doc = "allow"
+missing_panics_doc = "allow"
+must_use_candidate = "allow"

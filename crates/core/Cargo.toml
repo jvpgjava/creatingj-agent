@@ -1,0 +1,21 @@
+[package]
+name = "creatingj-core"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+rust-version.workspace = true
+
+[dependencies]
+dirs.workspace = true
+serde.workspace = true
+sha2.workspace = true
+thiserror.workspace = true
+toml.workspace = true
+url.workspace = true
+
+[dev-dependencies]
+tempfile.workspace = true
+
+[lints]
+workspace = true
