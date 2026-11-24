@@ -8,3 +8,10 @@
 Thumbs.db
 *.log
 .creatingj/
+/docs/
+/deploy/
+/config/
+/specs/
+/spec/
+.vscode/
+.idea/
