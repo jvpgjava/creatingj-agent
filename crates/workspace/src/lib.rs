@@ -283,8 +283,14 @@ impl Workspace {
                 },
             }
         }
+        let display_root = self
+            .root
+            .display()
+            .to_string()
+            .strip_prefix(r"\\?\")
+            .map_or_else(|| self.root.display().to_string(), str::to_owned);
         Ok(WorkspaceInfo {
-            root: self.root.display().to_string(),
+            root: display_root,
             is_git_repo: self.is_git_repo,
             detected_stacks: stacks.into_iter().collect(),
             file_count: files.len(),

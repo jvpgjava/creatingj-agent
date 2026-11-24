@@ -272,6 +272,17 @@ pub async fn cmd_chat(
     }
 }
 
+const CLI_BANNER: &str = concat!(
+    "\x1b[96m",
+    "\n    .-----------.       ____                _   _                   _ ",
+    "\n    |  \x1b[97m^     ^\x1b[96m  |      / ___|_ __ ___  __ _| |_(_)_ __   __ _      | |",
+    "\n   \x1b[94m/\x1b[96m|     \x1b[97m_\x1b[96m     |\x1b[94m\\    \x1b[96m| |   | '__/ _ \\/ _` | __| | '_ \\ / _` |  _  | |",
+    "\n    '-----------'     | |___| | |  __/ (_| | |_| | | | | (_| | | |_| |",
+    "\n      \x1b[94m|_|   |_|\x1b[96m        \\____|_|  \\___|\\__,_|\\__|_|_| |_|\\__, |  \\___/ ",
+    "\n                                                        |___/         ",
+    "\n\x1b[97m  :: CreatingJ CLI ::  \x1b[36mNão existe limite para sua imaginação.\x1b[0m\n",
+);
+
 pub async fn cmd_interactive(
     client: &CreatingJClient,
     store: &dyn CredentialStore,
@@ -281,14 +292,17 @@ pub async fn cmd_interactive(
     let _ = require_valid_session(client, store).await?;
     let ws = Workspace::detect(workspace_path)?;
     let info = ws.info()?;
-    println!("CreatingJ CLI — Nao existe limite para sua imaginacao.");
-    println!(
-        "Workspace: {} ({} arquivos | stacks: {})",
-        info.root,
-        info.file_count,
+    let stacks = if info.detected_stacks.is_empty() {
+        "nenhuma detectada".to_owned()
+    } else {
         info.detected_stacks.join(", ")
+    };
+    println!("{CLI_BANNER}");
+    println!(
+        "  Workspace: {} ({} arquivos | stacks: {})",
+        info.root, info.file_count, stacks
     );
-    println!("Digite sua mensagem (ou `/exit` para sair, `/new` para nova conversa):");
+    println!("  Digite sua mensagem (ou `/exit` para sair, `/new` para nova conversa):");
 
     let mut active_conv: Option<String> = None;
     let mut input = String::new();
